@@ -36,6 +36,6 @@ while ($attempts -lt 3) {
         break
     }
     catch {
-        Start-Sleep -Seconds 5
+        Start-Sleep -Seconds 15
     }
 }
