@@ -112,7 +112,7 @@ Run the task as **SYSTEM** or as an account with local admin rights. When the sc
   C:\Windows\System32\config\systemprofile\AppData\Local
   ```
 
->[!TIP]
+>[!NOTE]
 >ODT and Office install logs are written to `%TEMP%` (or `C:\Windows\Temp` when running as SYSTEM).
 <br />
 
