@@ -21,7 +21,7 @@ After installation, the script then deletes the installation folder within a sin
 
 ## Updating the Configuration XML
 
-The Office configuration is written inline in <a href="https://github.com/Contoso-Administrator/" target="_blank">line 67</a>. Replace the text `Office Configuration Here` with the contents of your Click-to-Run XML configuration, inside the **single quotes**. This creates the XML configuration file instead of needing to transfer it:
+The Office configuration is written inline in <a href="https://github.com/Contoso-Administrator/Office-LTSC-Install-Script/blob/1d4b2f3812792a50b9a8e7f60a39e9d00d55479c/ODT_Deploy.ps1#L11" target="_blank">line 11</a>. Replace the text `Office Configuration Here` with the contents of your Click-to-Run XML configuration, inside the **single quotes**. This creates the XML configuration file instead of needing to transfer it:
 ```powershell
 New-Item -Path "$outputDir" -Name "Office.xml" -ItemType "File" -Value 'Office Configuration Here' -Force | Out-Null
 ```
@@ -61,7 +61,7 @@ This script can be configured to install either the suite of Office applications
 Microsoft releases new builds for the Office Deployment Tool regularly and recommends always using the latest version. Each release has a different download URL, so you need to update the variable `$odtUrl` when a new version comes out.
 
 >[!Note]
->If the Office Deployment Tool is locally hosted, you will need to replace <a href="https://github.com/Contoso-Administrator/" target="_blank">line 38</a> with the file transfer and use the variable `$odtInstaller` for the destination:
+>If the Office Deployment Tool is locally hosted, you will need to replace <a href="https://github.com/Contoso-Administrator/Office-LTSC-Install-Script/blob/1d4b2f3812792a50b9a8e7f60a39e9d00d55479c/ODT_Deploy.ps1#L14" target="_blank">line 14</a> with the file transfer and use the variable `$odtInstaller` for the destination:
 >```powershell
 >Copy-Item -Path "\\Remote\Folder\officedeploymenttool_20527-20150.exe" -Destination $odtInstaller
 >```
@@ -71,7 +71,7 @@ Microsoft releases new builds for the Office Deployment Tool regularly and recom
 
 1. Navigate to the [official download page](https://www.microsoft.com/en-us/download/details.aspx?id=49117)
 2. Right click the **Download** option to select 'Copy link address':
-![[ODT.png]]
+<img width="1636" height="642" alt="ODT" src="https://github.com/user-attachments/assets/0a0969e9-2cbc-451b-b490-3076405bf644" />
 
 The link should look like this:
 ```
@@ -89,7 +89,7 @@ Before deploying, check that the URL works by pasting it into a browser and conf
 
 #### Step 3: Update the script
 
-Replace the value of `$odtUrl` in <a href="https://github.com/Contoso-Administrator/" target="_blank">line 67</a> of the script with the updated URL:
+Replace the value of `$odtUrl` in <a href="https://github.com/Contoso-Administrator/Office-LTSC-Install-Script/blob/1d4b2f3812792a50b9a8e7f60a39e9d00d55479c/ODT_Deploy.ps1#L2" target="_blank">line 2</a> of the script with the updated URL:
 ```powershell
 $odtUrl = "https://download.microsoft.com/download/<new-GUID>/officedeploymenttool_<new-build>.exe"
 ```
