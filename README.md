@@ -43,6 +43,7 @@ New-Item -Path "$outputDir" -Name "Office.xml" -ItemType "File" -Value '<Configu
   <Remove All="TRUE" />
 </Configuration>' -Force | Out-Null
 ```
+<br />
 
 >[!Note]
 > For the script to be a silent install, the following must be included in the configuration
@@ -51,6 +52,7 @@ New-Item -Path "$outputDir" -Name "Office.xml" -ItemType "File" -Value '<Configu
 <br />
 
 This script can be configured to install either the suite of Office applications or as just a standalone (Project, Visio) installer. Reviewing <a href="https://learn.microsoft.com/en-us/microsoft-365-apps/deploy/office-deployment-tool-configuration-options" target="_blank">the configuration options</a> that are available is recommended, as there are many options on how to update, exclude, download, and target these applications for deployment.
+<br />
 
 > [!TIP]
 > Use the [Office Customization Tool](https://config.office.com/deploymentsettings) to build a configuration file for all Microsoft Click-to-Run applications in the web interface, then paste the exported XML into the script.
@@ -72,6 +74,7 @@ Microsoft releases new builds for the Office Deployment Tool regularly and recom
 1. Navigate to the [official download page](https://www.microsoft.com/en-us/download/details.aspx?id=49117)
 2. Right click the **Download** option to select 'Copy link address':
 <img width="1636" height="642" alt="ODT" src="https://github.com/user-attachments/assets/0a0969e9-2cbc-451b-b490-3076405bf644" />
+<br />
 
 The link should look like this:
 ```
@@ -97,9 +100,9 @@ $odtUrl = "https://download.microsoft.com/download/<new-GUID>/officedeploymentto
 
 ## Usage
 
-To manually start the script, run the following command from an elevated PowerShell prompt:
+To manually start the script, run the following command from an elevated PowerShell prompt in same directory as the script:
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File .\Install-OfficeLTSC.ps1
+& "C:\Path\to\folder\ODT_Deploy.ps1"
 ```
 <br />
 
