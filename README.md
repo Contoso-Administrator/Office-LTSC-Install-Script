@@ -4,9 +4,7 @@ This lightweight PowerShell script is built for unattended deployment through an
 
 > [!CAUTION]
 > For large deployments, it is best practice to [self host both the Office Deployment Tool](## Updating the Office Deployment Tool URL) and <a href="https://learn.microsoft.com/en-us/microsoft-365-apps/deploy/office-deployment-tool-configuration-options#downloadpath-attribute-part-of-add-element" target="_blank">Click-to-Run installation files</a> as the Microsoft CDN has rate-limiting in place for both. 
-
-
----
+<br />
 
 ## Workflow
 
@@ -19,9 +17,7 @@ flowchart LR
 The script first creates the installation directory (`$env:LOCALAPPDATA\OfficeDeploymentTool`) to then download the Office Deployment Tool to it. Once the download is complete, ODT is then run against the XML config to install the desired application(s).
 
 After installation, the script then deletes the installation folder within a single loop that waits up to 3 minutes for any child processes to end and makes 3 attempts to delete the folder (to handle short file locks such as antivirus scans). If every attempt fails, the installation folder stays in place and the script exits without an error.
-
-
----
+<br />
 
 ## Updating the Configuration XML
 
@@ -29,7 +25,7 @@ The Office configuration is written inline in <a href="https://github.com/Contos
 ```powershell
 New-Item -Path "$outputDir" -Name "Office.xml" -ItemType "File" -Value 'Office Configuration Here' -Force | Out-Null
 ```
-
+<br />
 
 Example configuration of a Office LTSC Standard 2024 Click-to-Run deployment:
 ```powershell
@@ -52,15 +48,13 @@ New-Item -Path "$outputDir" -Name "Office.xml" -ItemType "File" -Value '<Configu
 > For the script to be a silent install, the following must be included in the configuration
 > file:  `<Display Level="None" AcceptEULA="TRUE" />`
 >
-
+<br />
 
 This script can be configured to install either the suite of Office applications or as just a standalone (Project, Visio) installer. Reviewing <a href="https://learn.microsoft.com/en-us/microsoft-365-apps/deploy/office-deployment-tool-configuration-options" target="_blank">the configuration options</a> that are available is recommended, as there are many options on how to update, exclude, download, and target these applications for deployment.
 
 > [!TIP]
 > Use the [Office Customization Tool](https://config.office.com/deploymentsettings) to build a configuration file for all Microsoft Click-to-Run applications in the web interface, then paste the exported XML into the script.
-
-
----
+<br />
 
 ## Updating the Office Deployment Tool URL
 
@@ -71,6 +65,7 @@ Microsoft releases new builds for the Office Deployment Tool regularly and recom
 >```powershell
 >Copy-Item -Path "\\Remote\Folder\officedeploymenttool_20527-20150.exe" -Destination $odtInstaller
 >```
+<br />
 
 #### Step 1: Find the latest download link
 
@@ -82,6 +77,7 @@ The link should look like this:
 ```
 https://download.microsoft.com/download/<GUID>/officedeploymenttool_<build>.exe
 ```
+<br />
 
 #### Step 2: Verify the link
 
@@ -89,6 +85,7 @@ Before deploying, check that the URL works by pasting it into a browser and conf
 
 > [!NOTE]
 > Microsoft removes old ODT download links over time. If the script fails at the download step with a `404` error, the URL is out of date and needs to be updated.
+<br />
 
 #### Step 3: Update the script
 
@@ -96,9 +93,7 @@ Replace the value of `$odtUrl` in <a href="https://github.com/Contoso-Administra
 ```powershell
 $odtUrl = "https://download.microsoft.com/download/<new-GUID>/officedeploymenttool_<new-build>.exe"
 ```
-
-
----
+<br />
 
 ## Usage
 
@@ -106,6 +101,7 @@ To manually start the script, run the following command from an elevated PowerSh
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File .\Install-OfficeLTSC.ps1
 ```
+<br />
 
 #### RMM
 Run the task as **SYSTEM** or as an account with local admin rights. When the script runs as **SYSTEM**, the installation folder `$env:LOCALAPPDATA` resolves to:
@@ -113,20 +109,9 @@ Run the task as **SYSTEM** or as an account with local admin rights. When the sc
   C:\Windows\System32\config\systemprofile\AppData\Local
   ```
 
-
 >[!TIP]
 >ODT and Office install logs are written to `%TEMP%` (or `C:\Windows\Temp` when running as SYSTEM).
-
-
-## Common issues
-
-| Symptom                                | Likely Cause                            | Fix                                                                                                  |
-| -------------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Download fails with `404`              | ODT URL is outdated                     | [Update the URL](#updating-the-office-deployment-tool-url)                                           |
-| Application(s) don't install           | Invalid XML or wrong Product ID/Channel | Validate the config in the [Office Customization Tool](https://config.office.com/deploymentsettings) |
-| Working folder isn't deleted           | A process or AV scan still holds a lock | Rerun cleanup or delete it manually; check Task Manager for leftover `setup.exe` processes           |
-| Install conflicts with existing Office | Mixed 32-bit/64-bit or MSI versions     | Add `<Remove All="TRUE" />` and/or `<RemoveMSI />` to the configuration                              |
-
+<br />
 
 ## Requirements
 >- Windows 10/11
