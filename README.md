@@ -100,7 +100,7 @@ $odtUrl = "https://download.microsoft.com/download/<new-GUID>/officedeploymentto
 
 ## Usage
 
-To manually start the script, run the following command from an elevated PowerShell prompt in same directory as the script:
+To manually start the script, run the following command from an elevated PowerShell session:
 ```powershell
 & "C:\Path\to\folder\ODT_Deploy.ps1"
 ```
