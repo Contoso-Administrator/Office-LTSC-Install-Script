@@ -3,7 +3,7 @@
 This lightweight PowerShell script is built for unattended deployment through any RMM/endpoint management platforms that don't already have a pre-configured option. It does this by downloading the Microsoft **Office Deployment Tool (ODT)**, extracts it, downloads and installs Click-to-Run Office products from an inline XML configuration, and then deletes the installation folder. This is an easily managed solution as the configuration file is written directly into the script, along with the install of the Office Deployment Tool and application(s).  
 
 > [!CAUTION]
-> For large deployments, it is best practice to [(self host both the Office Deployment Tool](https://github.com/Contoso-Administrator/Office-LTSC-Install-Script#updating-the-office-deployment-tool-url)) and <a href="https://learn.microsoft.com/en-us/microsoft-365-apps/deploy/office-deployment-tool-configuration-options#downloadpath-attribute-part-of-add-element" target="_blank">Click-to-Run installation files</a> as the Microsoft CDN has rate-limiting in place for both. 
+> For large deployments, it is best practice to [self host both the Office Deployment Tool](https://github.com/Contoso-Administrator/Office-LTSC-Install-Script#updating-the-office-deployment-tool-url) and <a href="https://learn.microsoft.com/en-us/microsoft-365-apps/deploy/office-deployment-tool-configuration-options#downloadpath-attribute-part-of-add-element" target="_blank">Click-to-Run installation files</a> as the Microsoft CDN has rate-limiting in place for both. 
 <br />
 
 ## Workflow
